@@ -49,7 +49,7 @@ It also includes functionality to convert PPTX slides to images using Windows CO
 ## Usage
 ### Running the Streamlit App
 
-Run the interactive UI to generate presentations:
+- Run the interactive UI to generate presentations:
     ```bash
     streamlit run app/main.py
     ```
