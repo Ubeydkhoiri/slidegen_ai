@@ -1,58 +1,41 @@
-# SLIDEGEN_AI
+# SlideGen AI
 
-SLIDEGEN_AI is a Python-based project to generate PowerPoint presentations from AI-generated outlines, using Azure OpenAI, LangChain, python-pptx, and Streamlit for interactive UI.  
-It also includes functionality to convert PPTX slides to images using Windows COM automation.
+A web app that generates slide decks with AI. A signed-in user types a topic, an LLM drafts the deck, the user edits it in the browser, then exports it to PPTX, PDF or Google Slides. Every deck is saved to the user's history.
 
----
+> **Status:** being rebuilt as a FastAPI + React app. The original Streamlit prototype still lives in `app/` and will be removed once its logic is ported. See `agent_docs/architecture.md` for the phase plan and progress.
 
-## Features
+## Stack
 
-- Generate structured presentation outlines via Azure OpenAI and LangChain prompt templates.
-- Convert AI outlines (JSON) into fully formatted PowerPoint (.pptx) slides.
-- Interactive web interface using Streamlit to input prompts, preview outlines, and download presentations.
-- Convert PowerPoint slides to images (PNG) on Windows using COM automation.
-- Modular and well-structured codebase for easy customization and extension.
+- `backend/`: Python 3.12, FastAPI, SQLAlchemy 2 + Alembic, Pydantic v2, PostgreSQL, managed with `uv`.
+- `frontend/`: React + TypeScript + Vite, using npm (`npm install`, `npm run dev` on :5173, `npm test`, `npm run build`).
+- LLM: any OpenAI-compatible endpoint, chosen by env vars.
+- Exports: python-pptx, LibreOffice headless (PDF), Google Drive API (Google Slides).
 
----
+## Getting started
 
-## Installation
+```bash
+# Database
+docker compose up -d db
 
-1. Clone this repository:
+# Backend
+cd backend
+cp ../.env.example .env   # then fill in the values
+uv sync
+uv run uvicorn app.main:app --reload   # http://localhost:8000/health
+```
 
-   ```bash
-   git clone https://github.com/username/slidegen_ai.git
-   cd ai_slide_maker
-   ```
+Checks before committing:
 
-2. Create and activate a virtual environment:
-    ```bash
-    python -m venv .venv
-    .venv\Scripts\activate  # Windows
-    ```
+```bash
+cd backend
+uv run ruff check --fix . && uv run ruff format .
+uv run pytest
+```
 
-3. Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+## Legacy prototype
 
-4. Configure environment variables:
-    ```bash
-    @echo off
-    set AZURE_OPENAI_API_KEY=your_api_key
-    set AZURE_OPENAI_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
-    set AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4o-mini
-    set AZURE_OPENAI_API_VERSION=2025-01-01-preview
-
-    set PYTHONPATH=%cd%
-    ```
-
-## Usage
-### Running the Streamlit App
-
-- Run the interactive UI to generate presentations:
-    ```bash
-    streamlit run app/main.py
-    ```
+The Streamlit prototype needs Azure OpenAI env vars (`AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT_NAME`, `AZURE_OPENAI_API_VERSION`) and `pip install -r requirements.txt`, then `streamlit run app/main.py`. It is deprecated.
 
 ## License
+
 MIT License © 2025 Ubeyd Khoiri

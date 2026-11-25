@@ -1,4 +1,22 @@
 __pycache__/
-.venv
+*.pyc
+.venv/
 env.cmd
-data/*
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Generated files (the template previews data/*.jpg stay tracked until the prototype is removed)
+data/presentation.pptx
+data/presentation_outline.json
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.claude/worktrees/
+
+# Frontend
+node_modules/
+frontend/dist/
