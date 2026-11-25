@@ -7,7 +7,7 @@ A web app that generates slide decks with AI. A signed-in user types a topic, an
 ## Stack
 
 - `backend/`: Python 3.12, FastAPI, SQLAlchemy 2 + Alembic, Pydantic v2, PostgreSQL, managed with `uv`.
-- `frontend/`: React + TypeScript + Vite (coming in Phase 0).
+- `frontend/`: React + TypeScript + Vite, using npm (`npm install`, `npm run dev` on :5173, `npm test`, `npm run build`).
 - LLM: any OpenAI-compatible endpoint, chosen by env vars.
 - Exports: python-pptx, LibreOffice headless (PDF), Google Drive API (Google Slides).
 

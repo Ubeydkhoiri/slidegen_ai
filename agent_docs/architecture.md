@@ -24,7 +24,7 @@ Use SQLAlchemy's `JSON` type with a JSONB variant on Postgres so tests can run o
 
 Tick each item when it's merged, so the next session knows where things stand.
 
-- [ ] **Phase 0, foundations:** create the `backend/` skeleton (pyproject + uv, ruff, pytest, settings, `/health`); `docker-compose.yml` with Postgres; `.env.example`; create the `frontend/` Vite skeleton; add CI (GitHub Actions running lint, tests and build); fix `.gitignore` (it ignores `data/*`, but those files are committed anyway).
+- [x] **Phase 0, foundations:** create the `backend/` skeleton (pyproject + uv, ruff, pytest, settings, `/health`); `docker-compose.yml` with Postgres; `.env.example`; create the `frontend/` Vite skeleton; add CI (GitHub Actions running lint, tests and build); fix `.gitignore` (it ignores `data/*`, but those files are committed anyway).
 - [ ] **Phase 1, generation:** add the `Deck` schema, the LLM client with OpenAI-compatible providers and a fake provider, and `POST /api/generate`. Port the prompt from `app/llm/prompt_templates.py`.
 - [ ] **Phase 2, auth and storage:** add Google sign-in, the `users` and `decks` tables with migrations, deck CRUD with ownership checks, and the history page.
 - [ ] **Phase 3, editor:** build a 16:9 canvas with inline text editing, add, delete and reorder slides, change a slide's layout, pick a theme, autosave, and speaker notes.
